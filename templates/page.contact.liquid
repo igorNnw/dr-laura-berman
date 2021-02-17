@@ -1,0 +1,123 @@
+
+<article class="page">
+
+
+
+
+<article class="page">
+
+    <div id="shopify-section-section-1" class="shopify-section section-slideshow shopify-section-first">
+
+    <div class="slideshow slideshow-slides-1" data-slideshow="">
+
+
+    <article class="slideshow-slide slideshow-slide-layout-default-left contact-border" data-slideshow-slide="" data-slideshow-slide-layout="default-left">
+      <figure class="slideshow-slide-image" data-slideshow-slide-image="" data-slideshow-layout="default-left">
+      
+        <noscript data-rimg-noscript="">
+          <img src="{{ 'contact.jpg' | asset_url }}" alt="" data-rimg="noscript" srcset="{{ 'contact.jpg' | asset_url }}" class="mb50">
+        </noscript>
+
+        <img src="{{ 'contact.jpg' | asset_url }}" alt="" data-rimg="loaded" data-rimg-scale="1" data-rimg-template="{{ 'contact.jpg' | asset_url }}" data-rimg-max="810x673" data-rimg-crop="center" srcset="{{ 'contact.jpg' | asset_url }}" data-rimg-template-svg="data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='810'%20height='673'></svg>">
+
+    </figure>
+
+
+    <div class="slideshow-slide-info">
+
+      <a class="slideshow-slide-link" href="" style="color: #000000;"><span class="slideshow-slide-link-text">CONTACT</span></a>
+      <h2 class="slideshow-slide-title" style="color: #000000;">Change your life</h2>
+
+      <div class="slideshow-slide-text" style="color: #000000;">
+              <p>Let us know what is on your mind? Have a question? Feedback? Want to set up and appointment? Here's the place...</p>
+      </div>
+
+    </div>
+
+</article>
+
+
+
+  <div class="page-contact">
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <p class="success-message">
+          {{ 'contact.form.success' | t  }}
+        </p>
+      {% else %}
+
+        {% if form.errors %}
+          {{ form.errors | default_errors }}
+        {% endif %}
+
+        <div class="input-wrapper">
+          <label for="contact-name">{{ 'contact.form.name' | t }}</label>
+          <input
+            id="contact-name"
+            type="text"
+            value="{{ form.name }}"
+            name="contact[name]"
+            class="input-field {% if form.errors contains 'name' %}error{% endif %}">
+        </div>
+
+        <div class="input-wrapper">
+          <label for="contact-email">{{ 'contact.form.email' | t }}</label>
+          <input
+            id="contact-email"
+            type="text"
+            value="{{ form.email }}"
+            name="contact[email]"
+            class="input-field {% if form.errors contains 'email' %}error{% endif %}">
+        </div>
+
+        <div class="input-wrapper">
+          <label for="contact-phone">{{ 'contact.form.phone' | t }}</label>
+          <input
+            id="contact-phone"
+            type="tel"
+            value="{{ form.phone }}"
+            name="contact[phone]"
+            class="input-field {% if form.errors contains 'phone' %}error{% endif %}">
+        </div>
+
+        <div class="input-wrapper">
+          <label for="contact-message">{{ 'contact.form.message' | t }}</label>
+          <textarea
+            id="contact-message"
+            name="contact[comments]"
+            class="input-field {% if form.errors contains 'comments' %}error{% endif %}"
+          >{{ form.comments }}</textarea>
+        </div>
+    
+    	 <div class="input-wrapper">
+           <div class="captcha">
+              <label for="contact-message">How much is <span id="question"/></label>
+	          <input type="text" id="answer" class="input-field"/>
+		</div>
+    	</div>
+
+        <input class="contact-form-submit" type="submit" value="{{ 'contact.form.submit' | t }}">
+      {% endif %}
+    {% endform %}
+
+    <div class="page-contact-contactbar contact-sidebar" data-contactbar-page-target>
+          <h4>Book an Appointment with Dr. Berman:</h4>
+          <p><a href="mailto:appointments@lauraberman.com">appointments@lauraberman.com</a></p>
+
+          <h4><strong>Media Relations:</strong></h4>
+          <p>Samuel Chapman<br />
+          <a href="mailto:samuelpchapman49@gmail.com">samuelpchapman49@gmail.com</a><br />
+          312.961.9492</p>
+
+          <h4><strong>Speaking Engagements:</strong></h4>
+          <p>Samuel Chapman<br />
+          <a href="mailto:samuelpchapman49@gmail.com">samuelpchapman49@gmail.com</a><br />
+          312.961.9492</p>
+    </div>
+
+
+
+  </div>
+</article>
+
+

@@ -1,0 +1,115 @@
+{% capture captured_page %}
+<article class="page">
+  {% include 'masthead', title: page.title %}
+
+  <div class="page-content rte">
+    
+    <div class="page-contact">
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <p class="success-message">
+          {{ 'contact.form.success' | t  }}
+        </p>
+      {% else %}
+
+        {% if form.errors %}
+          {{ form.errors | default_errors }}
+        {% endif %}
+
+        <div class="input-wrapper">
+          <label for="contact-firstName">First Name</label>
+          <input
+            id="contact-firstName"
+            type="text"
+            value="{{ form.firstName }}"
+            name="contact[firstName]"
+            class="input-field {% if form.errors contains 'firstName' %}error{% endif %}" required>
+        </div>
+      
+      <div class="input-wrapper">
+          <label for="contact-lastName">Last Name</label>
+          <input
+            id="contact-lastName"
+            type="text"
+            value="{{ form.lastName }}"
+            name="contact[lastName]"
+            class="input-field {% if form.errors contains 'lastName' %}error{% endif %}" required>
+        </div>
+      
+      <div class="input-wrapper">
+          <label for="contact-organization">Organization</label>
+          <input
+            id="contact-organization"
+            type="text"
+            value="{{ form.organization }}"
+            name="contact[organization]"
+            class="input-field {% if form.errors contains 'organization' %}error{% endif %}" required>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="contact-email">{{ 'contact.form.email' | t }}</label>
+          <input
+            id="contact-email"
+            type="text"
+            value="{{ form.email }}"
+            name="contact[email]"
+            class="input-field {% if form.errors contains 'email' %}error{% endif %}" required>
+        </div>
+          
+        <div class="input-wrapper">
+          <label for="contact-email">Phone Number</label>
+          <input
+            id="contact-phone"
+            type="text"
+            value="{{ form.phone }}"
+            name="contact[phone]"
+            class="input-field {% if form.errors contains 'phone' %}error{% endif %}">
+        </div>
+
+        <div class="input-wrapper">
+          <label for="contact-category">Category</label>
+<select id="contact-category" name="contact[category]">
+  <option value="">Select...</option>
+  <option value="Business">Business</option>
+  <option value="Entertainment">Entertainment</option>
+  <option value="Finance">Finance</option>
+  <option value="Health &amp; Fitness">Health &amp; Fitness</option>
+  <option value="Lifestyle">Lifestyle</option>
+  <option value="News (Daily/Weekly)">News (Daily/Weekly)</option>
+  <option value="Other">Other</option>
+</select>
+        </div>
+      
+      <div class="input-wrapper">
+          <label for="contact-readership">Readership</label>
+<select id="contact-readership" name="contact[readership]">
+  <option value="">Select...</option>
+  <option value="Less than 1 million">Less than 1 million</option>
+  <option value="1-10 million">1-10 million</option>
+  <option value="10-50 million">10-50 million</option>
+  <option value="More than 50 million">More than 50 million</option>
+</select>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="contact-message">Additional comments</label>
+          <textarea
+            id="contact-message"
+            name="contact[comments]"
+            class="input-field {% if form.errors contains 'comments' %}error{% endif %}" required
+          >{{ form.comments }}</textarea>
+        </div>
+
+        <input class="contact-form-submit" type="submit" value="{{ 'contact.form.submit' | t }}">
+      {% endif %}
+    {% endform %}
+
+
+  </div>
+    
+    
+  </div>
+</article>
+
+{% endcapture %}
+{% include 'password-protect' %}

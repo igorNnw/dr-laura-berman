@@ -1,0 +1,150 @@
+{% comment %}
+  @param inline
+{% endcomment %}
+
+{% unless settings.shipping_calculator == 'Disabled' %}
+  <div
+    class="
+      shipping-calculator
+      {% if inline %}
+        shipping-calculator-inline
+      {% endif %}
+    "
+    id="shipping-calculator"
+  >
+
+  {% if inline %}
+    <div class="shipping-calculator-inline-header">
+      <p>{{ 'cart.shipping_calculator.info' | t }}</p>
+      <a
+        href="#"
+        class="shipping-calculator-toggle"
+        data-shipping-calculator-toggle
+        data-toggle-text="{{ 'cart.shipping_calculator.hide' | t }}"
+      >
+        {{ 'cart.shipping_calculator.show' | t }}
+      </a>
+    </div>
+  {% endif %}
+
+    <div class="shipping-calculator-fields">
+      <div class="shipping-calculator-field">
+        <label for="address_country">
+          {{ 'cart.shipping_calculator.country' | t }}
+        </label>
+
+        {% capture default_country %}
+          {% if shop.customer_accounts_enabled and customer %}
+            {{ customer.default_address.country }}
+          {% elsif section.settings.shipping_calculator_default_country != '' %}
+            {{ section.settings.shipping_calculator_default_country | escape }}
+          {% else %}
+            {{ shop.address.country }}
+          {% endif %}
+        {% endcapture %}
+
+        <div class="shipping-calculator-select-wrapper">
+          <select
+            id="address_country"
+            name="address[country]"
+            data-default="{{ default_country | strip }}"
+          >
+            {{ country_option_tags }}
+          </select>
+
+          <span
+            class="shipping-calculator-select-arrow"
+          >
+            {%- include 'icon', id: 'arrow' -%}
+          </span>
+        </div>
+      </div>
+      <div
+        class="shipping-calculator-field"
+        id="address_province_container"
+        style="display:none;"
+      >
+        <label
+          for="address_province"
+          id="address_province_label"
+        >
+          {{ 'cart.shipping_calculator.province' | t }}
+        </label>
+
+        {% capture default_province %}
+          {% if shop.customer_accounts_enabled and customer %}
+            {{ customer.default_address.province }}
+          {% else %}
+            {{ shop.address.province }}
+          {% endif %}
+        {% endcapture %}
+
+        <div class="shipping-calculator-select-wrapper">
+          <select
+            id="address_province"
+            name="address[province]"
+            data-default="{{ default_province | strip }}"
+          ></select>
+
+          <span
+            class="shipping-calculator-select-arrow"
+          >
+            {%- include 'icon', id: 'arrow' -%}
+          </span>
+        </div>
+      </div>
+
+      <p class="shipping-calculator-field">
+        <label for="address_zip">
+          {{ 'cart.shipping_calculator.postal_code' | t }}
+        </label>
+
+        <input
+          type="text"
+          id="address_zip"
+          name="address[zip]"
+          {% if shop.customer_accounts_enabled and customer %}
+            value="{{ customer.default_address.zip | strip }}"
+          {% endif %}
+        />
+      </p>
+
+      <p class="shipping-calculator-field">
+        <button
+          class="shipping-calculator-submit get-rates"
+          type="button"
+        >
+          {{ 'cart.shipping_calculator.submit' | t }}
+        </button>
+      </p>
+    </div>
+
+    <div class="shipping-calculator-response" id="wrapper-response"></div>
+  </div>
+
+  <script id="shipping-calculator-response-template" type="text/template">
+    <p
+      class="shipping-rates-feedback"
+      id="shipping-rates-feedback"
+      <% if (success) { %>
+        class="success"
+      <% } else { %>
+        class="error"
+      <% } %>
+    >
+      <% if (success) { %>
+        <% if (rates.length > 1) { %>
+          There are <%- rates.length %> shipping rates available for <%- address %>, starting at <%= rates[0].price %>.
+        <% } else if (rates.length == 1) { %>
+          There is one shipping rate available for <%- address %>.
+        <% } else { %>
+          We do not ship to this destination.
+        <% } %>
+      <% } else { %>
+        <%- errorFeedback %>
+      <% } %>
+    </p>
+
+    <ul class="shipping-rates" id="shipping-rates"><% for (var i=0; i<rates.length; i++) { %><li><%- rates[i].name %> at <%= rates[i].price %></li><% } %></ul>
+  </script>
+{% endunless %}

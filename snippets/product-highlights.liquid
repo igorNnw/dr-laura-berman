@@ -1,0 +1,97 @@
+{%- comment -%}
+  Product highlights component
+
+  @param collection
+    The collection to display from
+    Defaults to product's collection if none is set
+
+  @param product_item_style
+    What styling should the product image be given
+
+  @param use_quickshop
+    Whether to use quickshop or not
+
+  @param products_per_row
+    How many products to display per row
+
+  @param products_row_count
+    How many rows of products to display
+
+  @param product_emphasize
+    Emphasize a product image in the first row
+{%- endcomment -%}
+
+{%- assign collection = collection | default: product.collections.first -%}
+{%- assign products = collection.products -%}
+{%- assign grid_count = products_per_row | times: products_row_count -%}
+
+{%- assign collection_product_count = 0 -%}
+
+{% if collection.all_products_count != blank %}
+  {%- assign collection_product_count = collection.all_products_count -%}
+{% endif %}
+
+{%- assign actual_product_count = grid_count -%}
+
+  {%- comment -%}
+    If a product is defined, we retrieved the collection from that product.
+    Therefore, we must ignore that product in the count as we do not want to display it.
+  {%- endcomment -%}
+  {%- if product -%}
+    {%- assign collection_product_count = collection_product_count | minus: 1 -%}
+  {%- endif -%}
+
+  {%- if collection_product_count < grid_count and collection_product_count != 0 -%}
+    {%- assign actual_product_count = collection_product_count -%}
+  {%- endif -%}
+  
+  {% if actual_product_count < products_per_row %}
+    {%- assign corrected_products_per_row = actual_product_count -%}
+  {% else %}
+    {%- assign corrected_products_per_row = products_per_row -%}
+  {% endif %}
+
+<section
+  class="product-highlights product-highlights-count-{{ corrected_products_per_row }}
+    {% if product_emphasize %} product-highlights-emphasized{% endif %}"
+  data-product-highlights>
+
+  {% if product_emphasize %}
+    {%- include 'product-highlights-emphasized',
+      products: products,
+      product_item_style: product_item_style,
+      use_quickshop: use_quickshop,
+      product_count: actual_product_count
+      products_per_row: corrected_products_per_row,
+      products_row_count: products_row_count,
+      product_emphasize: product_emphasize
+    -%}
+  {% else %}
+    {%- include 'product-highlights-normal',
+      products: products,
+      product_item_style: product_item_style,
+      use_quickshop: use_quickshop,
+      product_count: actual_product_count,
+      products_per_row: corrected_products_per_row,
+      products_row_count: products_row_count,
+      product_emphasize: product_emphasize
+    -%}
+  {% endif %}
+
+  {%- comment -%}
+    Include a hidden grid-style display container with all products to convert to a
+    flickity slider in mobile view (identified with the mobile_container variable).
+  {%- endcomment -%}
+
+  {%- include 'product-highlights-normal',
+    products: products,
+    product_item_style: product_item_style,
+    use_quickshop: use_quickshop,
+    product_count: actual_product_count,
+    products_per_row: corrected_products_per_row,
+    products_row_count: products_row_count,
+    product_emphasize: false,
+    mobile_container: true
+  -%}
+
+</section>

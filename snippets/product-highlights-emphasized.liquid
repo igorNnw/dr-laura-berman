@@ -1,0 +1,173 @@
+{%- comment -%}
+  Product highlights emphasized layout
+
+  @param products
+    The products array to display from
+
+  @param product_item_style
+    What styling should the product image be given
+
+  @param use_quickshop
+    Whether to use quickshop or not
+
+  @param product_count
+    The amount of products available to display
+
+  @param products_per_row
+    Number of products per row
+
+  @param products_row_count
+    Number of rows
+{%- endcomment -%}
+{%- assign first_column_count = 0 -%}
+{%- assign second_column_count = 0 -%}
+{%- assign third_column_count = 0 -%}
+
+{%- if products_per_row > 2 -%}
+  {%- assign first_column_count = 2 -%}
+{%- elsif products_per_row == 2 or products_per_row == 1 -%}
+  {%- assign first_column_count = 1 -%}
+{%- endif -%}
+
+{%- if products_per_row >= 2 -%}
+  {%- assign second_column_count = 1 -%}
+{%- endif -%}
+
+{%- if products_per_row == 5 -%}
+  {%- assign third_column_count = 2 -%}
+{%- elsif products_per_row == 4 -%}
+  {%- assign third_column_count = 1 -%}
+{%- endif -%}
+
+{%- assign loop_offset = 0 -%}
+{%- assign loop_product_count = 0 -%}
+
+{%- if product_count > 0 -%}
+  <div class="product-highlights-emphasized-wrapper" data-product-highlights-emphasized>
+    {%- if first_column_count > 0 -%}
+      <div class="product-highlights-column product-highlights-first-column">
+        {%- assign loop_product_count = 0 -%}
+        {%- if products != blank -%}
+          {%- for item in products offset: loop_offset -%}
+            {%- if item.handle != product.handle -%}
+              {%- include 'product-item',
+                product: item,
+                use_quickshop: use_quickshop,
+                product_style: product_item_style -%}
+              {%- assign loop_product_count = loop_product_count | plus: 1 -%}
+            {%- endif -%}
+
+            {%- assign loop_offset = loop_offset | plus: 1 -%}
+
+            {%- if loop_product_count == first_column_count -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..products_per_row) offset: loop_offset -%}
+            {%- include 'product-item-onboard',
+              product_style: product_item_style,
+              use_quickshop: use_quickshop
+            -%}
+
+            {%- assign loop_product_count = loop_product_count | plus: 1 -%}
+            {%- assign loop_offset = loop_offset | plus: 1 -%}
+
+            {%- if loop_product_count == first_column_count -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if second_column_count > 0 -%}
+      <div class="product-highlights-column product-highlights-second-column">
+        {%- assign loop_product_count = 0 -%}
+
+        {%- if products != blank -%}
+          {%- for item in products offset: loop_offset -%}
+            {%- if item.handle != product.handle -%}
+              {%- include 'product-item',
+                product: item,
+                product_style: product_item_style,
+                use_quickshop: use_quickshop
+              -%}
+              {%- assign loop_product_count = loop_product_count | plus: 1 -%}
+            {%- endif -%}
+
+            {%- assign loop_offset = loop_offset | plus: 1 -%}
+
+            {%- if loop_product_count == second_column_count -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..products_per_row) offset: loop_offset -%}
+            {%- include 'product-item-onboard',
+              product_style: product_item_style,
+              use_quickshop: use_quickshop
+            -%}
+
+            {%- assign loop_product_count = loop_product_count | plus: 1 -%}
+            {%- assign loop_offset = loop_offset | plus: 1 -%}
+
+            {%- if loop_product_count == second_column_count -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if third_column_count > 0 -%}
+      <div class="product-highlights-column product-highlights-third-column">
+        {%- assign loop_product_count = 0 -%}
+
+        {%- if products != blank -%}
+          {%- for item in products offset: loop_offset -%}
+            {%- if item.handle != product.handle -%}
+              {%- include 'product-item',
+                product: item,
+                product_style: product_item_style,
+                use_quickshop: use_quickshop
+              -%}
+              {%- assign loop_product_count = loop_product_count | plus: 1 -%}
+            {%- endif -%}
+
+            {%- assign loop_offset = loop_offset | plus: 1 -%}
+
+            {%- if loop_product_count == third_column_count -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..products_per_row) offset: loop_offset -%}
+            {%- include 'product-item-onboard',
+              product_style: product_item_style -%}
+
+            {%- assign loop_product_count = loop_product_count | plus: 1 -%}
+            {%- assign loop_offset = loop_offset | plus: 1 -%}
+
+            {%- if loop_product_count == third_column_count -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{%- if product_count > products_per_row -%}
+
+  {%- assign remaining_product_count = product_count | minus: products_per_row -%}
+  {%- include 'product-highlights-normal'
+    products: products,
+    product_item_style: product_item_style,
+    use_quickshop: use_quickshop,
+    product_count: remaining_product_count,
+    products_per_row: products_per_row,
+    products_row_count: products_row_count,
+    product_emphasize: product_emphasize
+  -%}
+{% endif %}
+

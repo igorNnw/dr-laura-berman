@@ -1,0 +1,206 @@
+{% capture product_menu_classes %}
+  product-menu
+  {% if product.has_only_default_variant %}
+    product-menu-default-variant
+  {% endif %}
+  {% if settings.use_highlighted_menu %}
+    product-menu-highlight
+  {% endif %}
+  {% if show_payment_button %}
+    product-menu-payment-buttons
+  {% endif %}
+{% endcapture %}
+
+{% if product.has_only_default_variant %}
+  {% assign product_menu_desktop_default_state = 'addtocart' %}
+
+  {% if show_payment_button %}
+    {% assign product_menu_mobile_default_state = 'selectoptions' %}
+  {% else %}
+    {% assign product_menu_mobile_default_state = 'addtocart' %}
+  {% endif %}
+{% else %}
+  {% assign product_menu_mobile_default_state = 'selectoptions' %}
+  {% assign product_menu_desktop_default_state = 'selectoptions' %}
+{% endif %}
+
+{% assign payment_buttons = blank %}
+
+{% if product != blank and show_payment_button %}
+  {% capture throwaway %}
+    {% form 'product', product, class: 'product-form' %}
+      {% capture payment_buttons %}
+        {{ form | payment_button }}
+      {% endcapture %}
+    {% endform %}
+  {% endcapture %}
+{% endif %}
+
+{%
+  form 'product',
+  product,
+  class: product_menu_classes,
+  data-product-menu: '',
+  data-product-menu-desktop-default-state: product_menu_desktop_default_state,
+  data-product-menu-mobile-default-state: product_menu_mobile_default_state,
+  data-product-menu-state: product_menu_mobile_default_state
+%}
+  <div class="product-menu-slideout" data-product-menu-slideout>
+    <div class="product-menu-slideout-header">
+      <h2 class="product-menu-slideout-heading">
+        {{ product.title }}
+      </h2>
+
+      <button
+        class="product-menu-slideout-dismiss"
+        type="button"
+        aria-label="{{ 'general.form.close' | t }}"
+        data-product-menu-slideout-dismiss
+      >
+        {%- include 'icon', id: 'close' -%}
+      </button>
+    </div>
+
+    <div
+      class="product-menu-slideout-addtocart"
+      data-product-menu-slideout-state="addtocart"
+      {% if product.has_only_default_variant %}
+        data-product-menu-slideout-no-animation
+        {% unless show_payment_button %}
+          data-product-menu-mobile-slideout-hidden
+        {% endunless %}
+        data-product-menu-desktop-slideout-hidden
+      {% endif %}
+    >
+      <p
+        class="product-menu-addtocart-failure-message"
+        data-product-menu-addtocart-failure-message
+      ></p>
+
+      {%- include 'product-options' -%}
+    </div>
+
+    <div
+      class="product-menu-slideout-addtocart-success"
+      data-product-menu-slideout-state="addtocart-success"
+    >
+      <div
+        class="product-menu-addtocart-success-message"
+        data-product-addtocart-success-message
+      >
+        <figure class="product-menu-addtocart-success-figure">
+          {%- include 'icon', id: 'cart' -%}
+
+          <label
+            class="product-menu-addtocart-success-quantity"
+          >
+            &plus;
+            <span data-product-menu-addtocart-success-quantity></span>
+          </label>
+        </figure>
+
+        <span class="product-menu-addtocart-success-heading">
+          {{ 'product.added_to_cart' | t }}
+        </span>
+
+        <span
+          class="product-menu-addtocart-success-title"
+          data-product-menu-addtocart-success-title
+        >
+          {{ product.title }}
+        </span>
+
+        <span
+          class="product-menu-addtocart-success-options"
+          data-product-menu-addtocart-success-options
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-menu-buttons" data-product-menu-buttons>
+    <div class="product-menu-buttons-content">
+      <div class="product-menu-buttons-info">
+        <a
+          class="product-menu-buttons-quickshop-link"
+          href="{{ product.url | within: collection }}"
+        >
+            {{ 'product.quickshop_cta' | t }}{%- include 'icon', id: 'arrow' -%}
+        </a>
+
+        <span class="product-menu-buttons-heading">
+          {{ product.title }}
+        </span>
+
+        <div class="product-menu-buttons-breadcrumbs">
+          {%- include 'breadcrumbs' -%}
+        </div>
+      </div>
+
+      <div
+        class="product-menu-buttons-selectoptions"
+        data-product-menu-buttons-state="selectoptions"
+      >
+        <button
+          class="product-menu-button"
+          type="button"
+          data-product-menu-button="selectoptions"
+        >
+          {{ 'product.select_options' | t }}
+        </button>
+      </div>
+
+      <div
+        class="product-menu-buttons-addtocart"
+        data-product-menu-buttons-state="addtocart"
+      >
+        <div class="product-menu-quantity">
+          {% include 'quantity' %}
+        </div>
+
+        <button
+          class="product-menu-button"
+          type="button"
+          data-product-menu-button="addtocart"
+          data-product-menu-button-addtocart
+          data-product-atc
+        >
+          <span
+            class="product-menu-addtocart"
+            data-product-menu-button-addtocart-text
+          >
+            {{ 'product.add_to_cart.available' | t }}
+          </span>
+
+          <span
+            class="money"
+            data-product-menu-button-addtocart-price
+          >
+            {{ product.selected_or_first_available_variant.price | money }}
+          </span>
+        </button>
+
+        {{ payment_buttons }}
+      </div>
+
+      <div
+        class="product-menu-buttons-addtocart-success"
+        data-product-menu-buttons-state="addtocart-success"
+      >
+        <a
+          class="product-menu-button-secondary"
+          href="{{ collection.url | default: shop.url }}"
+        >
+            {{ 'product.continue_shopping' | t }}
+        </a>
+
+        <a
+          class="product-menu-button"
+          href="/cart"
+        >
+          {{ 'product.view_cart' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+{% endform %}

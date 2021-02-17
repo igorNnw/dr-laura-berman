@@ -1,0 +1,53 @@
+{% include 'shogun-products', content: page %}
+{% capture captured_page %}
+<div id="inner-page">
+<article class="page">
+
+    <div id="shopify-section-section-1" class="shopify-section section-slideshow shopify-section-first">
+
+    <div class="slideshow slideshow-slides-1" data-slideshow="">
+
+
+    <article class="slideshow-slide slideshow-slide-layout-default-left" data-slideshow-slide="" data-slideshow-slide-layout="default-left">
+      <figure class="slideshow-slide-image" data-slideshow-slide-image="" data-slideshow-layout="default-left">
+      
+        <noscript data-rimg-noscript="">
+          <img src="{{ 'laura-and-oprah.jpg' | asset_url }}" alt="" data-rimg="noscript" srcset="{{ 'laura-and-oprah.jpg' | asset_url }}">
+        </noscript>
+
+        <img src="{{ 'laura-and-oprah.jpg' | asset_url }}" alt="" data-rimg="loaded" data-rimg-scale="1" data-rimg-template="{{ 'laura-and-oprah.jpg' | asset_url }}" data-rimg-max="810x673" data-rimg-crop="center" srcset="{{ 'laura-and-oprah.jpg' | asset_url }}" data-rimg-template-svg="data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='810'%20height='673'></svg>">
+
+    </figure>
+
+
+    <div class="slideshow-slide-info">
+
+      <a class="slideshow-slide-link" href="" style="color: #000000;"><span class="slideshow-slide-link-text">VIP Membership</span></a>
+      <h2 class="slideshow-slide-title" style="color: #000000;">Premium</h2>
+
+      <div class="slideshow-slide-text" style="color: #000000;">
+          <p>By: Dr. Laura Berman</p>
+      </div>  
+
+    </div>
+
+</article>
+
+
+<section class="quote">
+<span class="quotation"></span>
+    <p>"Relax. Nothing’s missing."</p>
+    <span> Maxime Lagacé  </span>
+</section>
+
+
+<div class="inner-content">
+
+  {% include 'masthead', title: page.title %}
+
+    {{ page.content }}
+
+</div>
+</div>
+{% endcapture %}
+{% include 'password-protect' %}

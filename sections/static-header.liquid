@@ -1,0 +1,242 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="static-header"
+  data-section-data>
+  {
+    "settings": {{ section.settings | json }},
+    "currency": {
+      "enable": {{ settings.enable_currency_converter | default: false }},
+      "shopCurrency": {{ shop.currency | json }},
+      "defaultCurrency": {{ settings.currency_converter_default | default: shop.currency | json }},
+      "displayFormat": {{ settings.currency_display_format | json }},
+      "moneyFormat": {{ shop[settings.currency_display_format] | default: shop.money_format | strip_html | json }},
+      "moneyFormatNoCurrency": {{ shop.money_format | strip_html | json }},
+      "moneyFormatCurrency": {{ shop.money_with_currency_format | strip_html | json }}
+    }
+  }
+</script>
+
+<div class="site-header-wrapper">
+  <div class="mobilenav-toggle">
+    {% include 'icon', id: 'mobilenav-toggle' %}
+    <a class="mobilenav-toggle-link" href="#site-mobilenav" data-mobilenav-toggle></a>
+  </div>
+
+  {% comment %}
+    Site Logo
+  {% endcomment %}
+  <a class="site-logo" href="/">
+    <h1 class="site-logo-header">
+      {% if section.settings.logo or section.settings.mobile_logo %}
+        {% assign desktop_logo = section.settings.logo | default: section.settings.mobile_logo %}
+        {% capture desktop_logo_size %}x{{ section.settings.logo_width | default: 160 | times: 2 }}{% endcapture %}
+        {% capture desktop_logo_style %}
+          {% if section.settings.logo_width != blank %}
+            max-width: {{ section.settings.logo_width }}px
+          {% endif %}
+        {% endcapture %}
+        {%
+          include 'rimg',
+          img: desktop_logo,
+          class: 'site-logo-image',
+          size: desktop_logo_size,
+          style: desktop_logo_style,
+          alt: shop.name
+        %}
+
+        {% assign mobile_logo = section.settings.mobile_logo | default: section.settings.logo %}
+        {% capture mobile_logo_size %}x{{ section.settings.mobile_logo_width | default: 80 | times: 2 }}{% endcapture %}
+        {% capture mobile_logo_style %}
+          {% if section.settings.mobile_logo_width != blank %}
+            max-width: {{ section.settings.mobile_logo_width }}px
+          {% endif %}
+        {% endcapture %}
+        {%
+          include 'rimg',
+          img: mobile_logo,
+          class: 'site-logo-image-mobile',
+          size: mobile_logo_size,
+          style: mobile_logo_style,
+          alt: shop.name
+        %}
+      {% else %}
+        <div class="site-logo-text">{{ shop.name }}</div>
+      {% endif %}
+    </h1>
+  </a>
+
+  {% comment %}
+    Desktop Navigation
+  {% endcomment %}
+  <nav class="site-navigation">
+    {% include 'navmenu',
+      menu: linklists[section.settings.menu],
+      depth: 1
+    %}
+
+    <div class="site-navigation-overlay"></div>
+  </nav>
+
+  {% comment %}
+    Site Actions (Currency selector, account link, cart, and search)
+  {% endcomment %}
+  <div class="site-actions">
+    {% if settings.enable_currency_converter %}
+      <div class="site-actions-currency">
+        <select
+          class="site-actions-currency-select"
+          name="currencies"
+          data-currency-converter>
+          {% assign supported_currencies = 'AED|ALL|AMD|ANG|AOA|ARS|AUD|AWG|AZN|BAM|BBD|BDT|BGN|BHD|BND|BOB|BRL|BSD|BTN|BWP|BYR|BZD|CAD|CHF|CLP|CNY|COP|CRC|CZK|DKK|DOP|DZD|EGP|ETB|EUR|FJD|GBP|GEL|GHS|GMD|GTQ|GYD|HKD|HNL|HRK|HUF|IDR|ILS|INR|ISK|JEP|JMD|JOD|JPY|KES|KGS|KHR|KRW|KWD|KYD|KZT|LBP|LKR|LTL|LVL|MAD|MDL|MGA|MKD|MMK|MNT|MOP|MUR|MVR|MXN|MYR|MZN|NAD|NGN|NIO|NOK|NPR|NZD|OMR|PEN|PGK|PHP|PKR|PLN|PYG|QAR|RON|RSD|RUB|RWF|SAR|SCR|SEK|SGD|STD|SYP|THB|TND|TRY|TTD|TWD|TZS|UAH|UGX|USD|UYU|VEF|VND|VUV|WST|XAF|XBT|XCD|XOF|XPF|ZAR|ZMW' %}
+          {% assign store_currencies = settings.currency_converter_currencies | split: ' ' %}
+          <option value="{{ shop.currency }}" selected="selected">{{ shop.currency }}</option>
+          {% for code in store_currencies %}
+            {% if code != shop.currency and supported_currencies contains code %}
+              <option value="{{ code }}">{{ code }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+
+    {% if shop.customer_accounts_enabled %}
+      <div class="site-actions-account">
+        {% if customer %}
+          <a href="/account">{{ 'header.account.title' | t }}</a>
+        {% else %}
+          {{ 'header.account.login' | t | customer_login_link }}
+        {% endif %}
+      </div>
+    {% endif %}
+
+<!-- /// Hiding the cart icon
+    <div class="site-actions-cart">
+      <a href="/cart" aria-label="{{ 'cart.view_cart' | t }}">
+        {% include 'icon', id: 'cart-stroke' %}
+        <span class="site-actions-cart-label" data-cart-item-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+-->
+
+    <div class="site-actions-search">
+      <a href="/search" aria-label="{{ 'search.form.title' | t }}">{% include 'icon', id: 'search' %}</a>
+    </div>
+  </div>
+</div>
+
+{% comment %}
+  Mobile Navigation
+{% endcomment %}
+<div id="site-mobilenav" class="mobilenav">
+  <div class="mobilenav-panel" data-mobilenav-animator>
+    <div class="mobilenav-panel-content">
+      <form class="mobilenav-search" action="/search">
+        <div class="mobilenav-search-icon">{% include 'icon', id: 'search' %}</div>
+
+        <input
+          class="mobilenav-search-input"
+          aria-label="{{ 'search.form.title' | t }}"
+          type="text"
+          placeholder="{{ 'search.form.placeholder' | t }}"
+          name="q"
+          value="{{ search.terms | escape }}">
+
+        <a class="mobilenav-search-cancel">{{ 'search.form.cancel' | t }}</a>
+      </form>
+
+      <div class="mobilenav-meganav" data-meganav-mobile-target></div>
+
+      <nav class="mobilenav-navigation">
+        {% include 'navmenu',
+          menu: linklists[section.settings.menu],
+          depth: 1
+        %}
+      </nav>
+    </div>
+
+    <div class="mobilenav-contactbar" data-contactbar-mobile-target></div>
+  </div>
+
+  <div
+    class="mobilenav-overlay"
+    data-mobilenav-animator
+    aria-label="{{ 'general.form.close' | t}}">
+    {% include 'icon', id: 'close' %}
+  </div>
+</div>
+
+{% for link in linklists[section.settings.menu].links %}
+  {% include 'is-dropdown-or-meganav', first_tier_link: link, uses_blocks: true %}
+
+  {% if is_meganav %}
+    {% include 'meganav', link: link %}
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "site-header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "id": "logo",
+      "type": "image_picker",
+      "label": "Logo image",
+      "info": "400 x 200px .png recommended"
+    },
+    {
+      "id": "logo_width",
+      "type": "text",
+      "label": "Custom logo width (in pixels)"
+    },
+    {
+      "id": "mobile_logo",
+      "type": "image_picker",
+      "label": "Mobile logo image",
+      "info": "An optional logo to display on mobile. 400 x 200px .png recommended."
+    },
+    {
+      "id": "mobile_logo_width",
+      "type": "text",
+      "label": "Custom mobile logo width (in pixels)"
+    },
+
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "id": "menu",
+      "type": "link_list",
+      "label": "Main menu",
+      "default": "main-menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu",
+      "name": "Mega menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item ([?](https://support.pixelunion.net/article/412-how-to-set-up-your-stores-navigation#dropdowns))",
+          "info": "Enter menu item to apply a mega menu dropdown"
+        },
+        {
+          "type": "checkbox",
+          "id": "menu_collection_images",
+          "label": "Show collection images",
+          "info": "You must have at least one collection set for images to display."
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

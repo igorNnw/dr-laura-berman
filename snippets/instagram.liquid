@@ -1,0 +1,62 @@
+
+
+{% comment %}
+  A instagram photo set template.
+
+  @param onboarding
+{% endcomment %}
+
+
+<span>@drlauraberman</span>
+
+<article
+  class="instagram-photos instagram-photo-count-8"
+  data-instagram-photos
+  data-rimg="lazy"
+>
+  {%- if onboarding -%}
+    {%- for i in (1..8) -%}
+      <figure class="instagram-photo" data-instagram-photo>
+        {{ 'image' | placeholder_svg_tag: 'placeholder-image' }}
+      </figure>
+    {%- endfor -%}
+  {%- else -%}
+    {%- for i in (1..8) -%}
+      <div
+        class="
+          instagram-photo-container
+          instagram-content-placeholder
+          {% if section.settings.access_token != blank %}
+            content-placeholder-animate
+          {% endif %}
+        "
+        data-instagram-photo-container
+        data-instagram-content-placeholder
+      >
+        <figure class="instagram-photo">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-image' }}
+        </figure>
+      </div>
+    {%- endfor -%}
+
+    <figure
+      class="
+        instagram-photo-container
+        instagram-photo-template
+      "
+      data-instagram-photo-container
+      data-instagram-photo-template
+    >
+      <div class="instagram-photo" data-instagram-photo-template-photo>
+        <div class="instagram-overlay">
+          <div class="instagram-likes-wrapper">
+            <span class="instagram-likes-icon">{%- include 'icon', id: 'heart' -%}</span>
+            <span class="instagram-likes" data-instagram-photo-template-likes></span>
+          </div>
+          <p class="instagram-caption" data-instagram-photo-template-caption></p>
+          <span class="instagram-timestamp" data-instagram-photo-template-timestamp></span>
+        </div>
+      </div>
+    </figure>
+  {%- endif -%}
+</article>

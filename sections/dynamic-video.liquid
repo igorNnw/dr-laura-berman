@@ -1,0 +1,105 @@
+<script
+  type="application/json"
+  data-section-type="dynamic-video"
+  data-section-id="{{ section.id }}"
+  data-section-data>
+  {}
+</script>
+
+<div
+  class="
+    dynamic-video-wrapper
+    dynamic-video-alignment-{{ section.settings.alignment }}
+  "
+>
+  {%
+    if section.settings.heading != blank
+    or section.settings.description != blank
+  %}
+    <div class="dynamic-video-info">
+      {% if section.settings.heading != blank %}
+        <h1 class="dynamic-video-info-heading">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="dynamic-video-info-description">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% assign url = section.settings.url | default: 'https://www.youtube.com/watch?v=_9VUPq3SxOc' %}
+
+  <div class="dynamic-video">
+    {%
+      include 'video',
+      placeholder_image: section.settings.placeholder,
+      style: section.settings.style,
+      url: url,
+    %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video",
+  "class": "section-video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Video"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Subheading",
+      "default": "Enhance your home page with a video that relates to your process, products, or story."
+    },
+    {
+      "type": "video_url",
+      "id": "url",
+      "label": "YouTube or Vimeo link",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Video alignment",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Right", "value": "right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "placeholder",
+      "label": "Placeholder image"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Placeholder button style",
+      "options": [
+        { "label": "Dark", "value": "dark" },
+        { "label": "Light", "value": "light" }
+      ],
+      "default": "dark",
+      "info": "Only visible if a placeholder image has been selected"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Video",
+      "name": "Video"
+    }
+  ]
+}
+
+{% endschema %}

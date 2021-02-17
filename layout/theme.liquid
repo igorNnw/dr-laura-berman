@@ -1,0 +1,178 @@
+<!doctype html>
+<!--[if IE 9]><html class="ie9 no-js"><![endif]-->
+<!--[if !IE]><!--><html class="no-js"><!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    
+    <meta name="p:domain_verify" content="e599508a1a97b1fce84e4b00ddb192bb"/>
+
+    <title>
+      {{- page_title -}}
+
+      {%- if current_tags -%}
+        {%- assign meta_tags = current_tags | join: ', ' %}
+        {{ 'title.tags' | t: tags: meta_tags -}}
+      {%- endif -%}
+
+      {%- if current_page != 1 -%}
+        {{- 'title.page' | t: page: current_page -}}
+      {%- endif -%}
+
+      {%- unless page_title contains shop.name -%}
+        {{- 'title.shop' | t: shop: shop.name -}}
+      {%- endunless -%}
+    </title>
+    
+  
+
+    {% if page_description != blank %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% if settings.favicon != blank %}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {% endif %}
+
+    {% if template contains 'collection' and current_tags %}
+      <meta name="robots" content="noindex" />
+      <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
+    {% else %}
+      <link rel="canonical" href="{{ canonical_url }}" />
+    {% endif %}
+
+    <meta name="viewport" content="width=device-width">
+
+    {%
+      include 'social-meta-tags',
+      twitter_handle: settings.twitter_handle
+    %}
+
+    <script>
+      document.documentElement.className=document.documentElement.className.replace(/\bno-js\b/,'js');
+      if(window.Shopify&&window.Shopify.designMode)document.documentElement.className+=' in-theme-editor';
+    </script>
+    
+    
+    <meta name="p:domain_verify" content="1a346d9766b3ee03a267f1cd2520256a"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" />
+    {{ 'youtube-video-gallery.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'hover.css' | asset_url | stylesheet_tag }}
+    {% include 'google-fonts', fonts: 'font_title|font_body|font_label' %}
+    <link rel="stylesheet" href="{{ 'modal-video.min.css' | asset_url }}">
+    {{ 'jquery.modal.min.css' | asset_url | stylesheet_tag }}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+    {{ content_for_header }}
+    
+   
+    {% if template contains 'quiz' %}
+    	<link href="https://surveyjs.azureedge.net/1.1.5/survey.css" type="text/css" rel="stylesheet" />
+    	{{ 'quiz.css' | asset_url | stylesheet_tag }}
+    	
+    {% endif %}
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    
+  {% include 'shogun-head' %}
+</head>
+
+  <body class="page-template-{{ template | replace: '_', '-' }}">
+    {% if template contains 'password' %}
+      <main class="site-main">
+        {{ content_for_layout }}
+      </main>
+
+      {% elsif page.handle == 'the-language-of-love' %}
+      {% section 'pxs-announcement-bar' %}
+      {% section 'static-header' %}
+      {% section 'static-contactbar' %}
+
+        {{ content_for_layout }}
+
+      {% section 'site-footer' %}
+
+    {% else %}
+      {% section 'pxs-announcement-bar' %}
+      {% section 'static-header' %}
+      {% section 'static-contactbar' %}
+
+      <main class="site-main">
+        {{ content_for_layout }}
+      </main>
+
+      {% section 'site-footer' %}
+    {% endif %}
+
+    {%- if template contains 'cart' -%}
+      {{ '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js' | script_tag }}
+      {{ '/services/javascripts/countries.js' | script_tag }}
+      {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {%- endif -%}
+
+    {%- if template contains 'customer' -%}
+      {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+      {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+    {%- endif -%}
+
+    <script
+      src="{{ 'handy.js' | asset_url }}"
+      data-scripts
+      data-shopify-api-url="{{ 'api.jquery.js' | shopify_asset_url }}"
+      data-shopify-cart-url="{{ 'jquery.cart.js' | asset_url }}"
+      data-shopify-currencies="//cdn.shopify.com/s/javascripts/currencies.js"
+      data-shopify-qrcode="{{ 'vendor/qrcode.js' | shopify_asset_url }}"
+    ></script>
+
+    <script>
+        var links = document.links;
+        for (let i = 0, linksLength = links.length ; i < linksLength ; i++) {
+          if (links[i].hostname !== window.location.hostname) {
+              links[i].target = '_blank';
+          }
+        }
+    </script>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="{{ 'jquery.flexslider.js' | asset_url }}"></script>
+    <script src="{{ 'jquery.modal.min.js' | asset_url }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous"></script>
+    <script src="{{ 'jquery.youtubevideogallery.js' | asset_url }}"></script>
+    <script src="{{ 'main.js' | asset_url }}"></script>
+
+    {% include 'structured-data' %}
+    {% include 'popup' %}
+    
+    {% if template contains 'contact' %}
+	{{ 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' | script_tag }}
+	<script type="text/javascript">
+	     $(document).ready(function() {
+	   	   var n1 = Math.round(Math.random() * 10 + 1);
+	     	   var n2 = Math.round(Math.random() * 10 + 1);
+	   	   $("#question").text(n1 + " + " + n2);
+	  	   $(".contact-form").submit(function (e) {
+	          	   if (eval($("#question").text()) != $("#answer").val()) {
+	                     $("#answer").css('box-shadow', '0px 0px 7px red');
+	              	     e.preventDefault(); 
+	          	   } 
+	     	   });
+	    });
+	 </script>
+{% endif %}
+    
+    {% if template contains 'quiz' %}
+    	
+    	 <script src="https://surveyjs.azureedge.net/1.0.92/survey.jquery.min.js"></script>
+    	 <script src="{{ 'quiz_config.js' | asset_url}}"></script>
+    	 <script src="{{ 'quiz.js' | asset_url }}"></script>
+    	
+    
+    	
+    {% endif %}
+    
+  </body>
+</html>

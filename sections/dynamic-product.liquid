@@ -1,0 +1,152 @@
+{% assign onboarding = false %}
+
+{% if section.settings.product_handle == blank %}
+  {% assign onboarding = true %}
+{% endif %}
+
+{% assign product = all_products[section.settings.product_handle] %}
+
+{% capture added_to_cart_link %}
+  {% include 'icon', id: 'checkmark' %}
+  {{ 'product.added_to_cart_link_html' | t }}
+{% endcapture %}
+
+<script
+  type="application/json"
+  data-section-type="dynamic-product"
+  data-section-id="{{ section.id }}"
+  data-section-data>
+  {
+    "onboarding": {{ onboarding | json }},
+    "product": {{ product | json }},
+    "selected_variant": {{ product.selected_variant | json }},
+    "selected_or_first_available_variant": {{ product.selected_or_first_available_variant | json }},
+    "money_format": {{ shop.money_format | json }},
+    "form_is_inline": true,
+    "enable_cart_redirection": {{ section.settings.enable_cart_redirection | json }},
+    "use_history": false,
+    "images_layout": "alternate",
+    "text": {
+      "added_to_cart_link": {{ added_to_cart_link | json }},
+      "product_available": {{ 'product.add_to_cart.available' | t | json }},
+      "product_unavailable": {{ 'product.add_to_cart.unavailable' | t | json }}
+    }
+  }
+</script>
+
+<div class="product-alert">
+  <div class="product-alert-content">
+    <div class="product-alert-dismiss">{% include 'icon', id: 'close' %}</div>
+    <div class="product-alert-message"></div>
+  </div>
+</div>
+
+<div
+  class="product-wrapper {% if product.images.size == 0 %}product-wrapper-no-images{% endif %}"
+  data-product-wrapper
+>
+  {%
+    include 'product-images',
+    layout: 'alternate',
+    onboarding: onboarding
+  %}
+
+  <section class="product-details product-details-relative" data-product-details>
+    {% if section.settings.show_product_vendor %}
+      <h2 class="product-vendor">
+        <a href="{{ product.vendor | url_for_vendor }}">
+          {% if onboarding %}
+            {{ 'product.onboarding.vendor' | t }}
+          {% else %}
+            {{ product.vendor }}
+          {% endif %}
+        </a>
+      </h2>
+    {% endif %}
+
+    <h1 class="product-title">
+      {% if onboarding %}
+        {{ 'product.onboarding.title' | t}}
+      {% else %}
+        {{ product.title }}
+      {% endif %}
+    </h1>
+
+    {%
+      include 'product-price',
+      onboarding: onboarding
+    %}
+
+    {% unless onboarding %}
+      {% include 'product-form-nojs' %}
+
+      {%
+        include 'product-form-inline',
+        show_payment_button: section.settings.show_payment_button
+      %}
+    {% endunless %}
+
+    {% if section.settings.enable_social_sharing %}
+      {% include 'share-buttons' %}
+    {% endif %}
+
+    <div class="product-rte rte">
+      {% if onboarding %}
+        {{ 'product.onboarding.description' | t }}
+      {% else %}
+        {{ product.description }}
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Featured product",
+  "class": "section-featured-product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product_handle",
+      "label": "Product"
+    },
+    {
+      "id": "show_product_vendor",
+      "type": "checkbox",
+      "label": "Show product vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_cart_redirection",
+      "label": "Enable cart redirection",
+      "info": "Automatically sends users to the Cart page after adding a product.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_button",
+      "label": "Show dynamic checkout button",
+      "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Sharing"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_social_sharing",
+      "label": "Enable social sharing",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "category": "Product",
+      "name": "Featured product"
+    }
+  ]
+}
+
+{% endschema %}

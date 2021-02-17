@@ -1,0 +1,34 @@
+{% comment %}
+  A shared price component, with compare at price, and regular price
+
+  @param variant
+{% endcomment %}
+
+{% assign variant = product.selected_or_first_available_variant %}
+
+<div class="product-price">
+  <span
+    class="
+      money
+      money-compare-at
+      {%
+        if onboarding
+        or variant.compare_at_price == blank
+        or variant.price == variant.compare_at_price
+      %}
+        money-compare-at-hidden
+      {% endif %}
+    "
+    data-variant-compare-at-price
+  >
+    {{ variant.compare_at_price | money }}
+  </span>
+
+  <span class="money" data-variant-price>
+    {% if onboarding %}
+      {{ 'product.onboarding.price' | t }}
+    {% else %}
+      {{ variant.price | money }}
+    {% endif %}
+  </span>
+</div>

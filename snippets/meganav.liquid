@@ -1,0 +1,73 @@
+{% assign menu_collection_images = false %}
+{% for block in section.blocks %}
+  {% assign mega_nav_handle = block.settings.menu_item | handle %}
+  {% if mega_nav_handle == link.handle %}
+    {% assign menu_collection_images = block.settings.menu_collection_images %}
+  {% endif %}
+{% endfor %}
+
+<div id="menu-item-{{ link.handle }}" class="meganav" {% unless inline %}data-meganav="{{ link.handle }}"{% endunless %}>
+  <nav
+    {% unless inline %}data-nav-trigger{% endunless %}
+    class="
+      meganav-menu
+      meganav-menu-{{ link.links.size }}
+      {% if menu_collection_images %}meganav-show-images{% endif %}
+    ">
+
+    <div class="meganav-menu-panel">
+      <div class="meganav-menu-panel-contents">
+        {% for link in link.links %}
+          {% assign collection = blank %}
+          {% if link.type == 'collection_link' %}
+            {% assign collection = link.object %}
+          {% endif %}
+
+          <div class="meganav-menu-group">
+            <a
+              href="{{ link.url }}"
+              class="meganav-menu-header"
+            >
+
+              {% if menu_collection_images %}
+                {% assign image = collection.image %}
+                {% if image == blank %}{% assign image = collection.products.first.featured_image %}{% endif %}
+
+                {% if image != blank %}
+                  <div class="meganav-menu-image">
+                    {%
+                      include 'rimg',
+                      img: image,
+                      size: '520x',
+                      lazy: true
+                    %}
+                  </div>
+                {% endif %}
+              {% endif %}
+
+              <h2 class="meganav-menu-title">
+                {{ link.title }}
+              </h2>
+
+              {% if link.links.size > 0 %}
+                <div class="navmenu-arrow-toggle">
+                  <div class="navmenu-arrow"></div>
+                </div>
+              {% endif %}
+            </a>
+
+            {% if link.links != blank %}
+              <div class="meganav-menu-items">
+                {% for link in link.links %}
+                  <div class="meganav-menu-item">
+                    <a class="meganav-menu-link" href="{{ link.url }}">{{ link.title }}</a>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+</div>

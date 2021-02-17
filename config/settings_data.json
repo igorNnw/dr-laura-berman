@@ -1,0 +1,980 @@
+{
+  "current": {
+    "quickshop_enable_cart_redirection": false,
+    "quickshop_show_payment_button": false,
+    "favicon": "shopify:\/\/shop_images\/fav.png",
+    "color_background": "#ffffff",
+    "color_accent": "#f26c4f",
+    "use_highlighted_menu": true,
+    "color_title_text": "#292929",
+    "color_text": "#292929",
+    "color_button_text": "#ffffff",
+    "font_title": "prata_n4",
+    "font_body": "karla_n4",
+    "font_label": "karla_n4",
+    "enable_currency_converter": false,
+    "currency_display_format": "money_with_currency_format",
+    "currency_converter_currencies": "INR GBP CAD USD AUD EUR JPY",
+    "currency_converter_default": "CAD",
+    "social_default_image": "",
+    "social_facebook": "https:\/\/www.facebook.com\/LoveAndBeLovedBetter\/",
+    "social_twitter": "https:\/\/twitter.com\/DrLauraBerman",
+    "social_google": "",
+    "social_pinterest": "",
+    "social_instagram": "https:\/\/www.instagram.com\/drlauraberman\/",
+    "social_vimeo": "",
+    "social_youtube": "https:\/\/www.youtube.com\/channel\/UCFNORC0Pa42loixEayYryTA",
+    "social_medium": "",
+    "social_rss": "",
+    "social_email": "",
+    "share_widget_facebook": true,
+    "share_widget_twitter": true,
+    "share_widget_pinterest": true,
+    "share_widget_google_plus": true,
+    "share_widget_email": true,
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/logo.gif",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#197bbd",
+    "checkout_error_color": "#e32c2b",
+    "sections": {
+      "section-1": {
+        "type": "dynamic-slideshow",
+        "blocks": {
+          "slide-1": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/slide.jpg",
+              "layout": "default-left",
+              "text_color": "#000000",
+              "title": "Helping you reach your full potential in love, sex and relationships",
+              "text": "<p>Dr Berman is a well loved and regular expert on love and relationships on television, radio and written media.<\/p>",
+              "link": "shopify:\/\/pages\/ask-laura",
+              "link_text": "View More"
+            }
+          }
+        },
+        "block_order": [
+          "slide-1"
+        ],
+        "settings": {
+          "should_autoplay": false,
+          "slide_autoplay": 3
+        }
+      },
+      "section-4": {
+        "type": "dynamic-blog-posts",
+        "settings": {
+          "title": "News from Blog",
+          "blog": "news"
+        }
+      },
+      "static-header": {
+        "type": "static-header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/logo.gif",
+          "logo_width": "",
+          "mobile_logo": "",
+          "mobile_logo_width": "",
+          "menu": "main-menu"
+        }
+      },
+      "site-footer": {
+        "type": "site-footer",
+        "blocks": {
+          "1549885116238": {
+            "type": "richtext",
+            "settings": {
+              "title": "About",
+              "content": "<p>Use this space to give credit where it's due, reinforce your brand identity, shop policy, or company motto.<\/p>"
+            }
+          },
+          "1549493780363": {
+            "type": "menu",
+            "settings": {
+              "menu": "footer"
+            }
+          },
+          "1549493947133": {
+            "type": "menu",
+            "settings": {
+              "menu": "footer-menu-2"
+            }
+          },
+          "1549885102794": {
+            "type": "menu",
+            "settings": {
+              "menu": "footer-menu-3"
+            }
+          }
+        },
+        "block_order": [
+          "1549885116238",
+          "1549493780363",
+          "1549493947133",
+          "1549885102794"
+        ],
+        "settings": {
+          "enable_newsletter": true,
+          "enable_social": true,
+          "enable_payment_icons": false
+        }
+      },
+      "static-collection": {
+        "type": "static-collection",
+        "settings": {
+          "enable_menu_form": false,
+          "products_pagination_method": "infinite_scroll",
+          "products-per-page": 12,
+          "products-per-row": 4,
+          "product_item_style": "small",
+          "product_grid_show_second_image": true,
+          "enable_product_quickshop": false,
+          "show_product_vendors": false
+        }
+      },
+      "static-product": {
+        "type": "static-product",
+        "blocks": {
+          "related-products": {
+            "type": "related_products",
+            "settings": {
+              "product_item_style": "natural",
+              "enable_product_quickshop": false,
+              "product-count": 5,
+              "product_emphasize": true
+            }
+          }
+        },
+        "block_order": [
+          "related-products"
+        ],
+        "settings": {
+          "enable_menu_form": false,
+          "show_product_vendor": true,
+          "enable_cart_redirection": true,
+          "show_payment_button": true,
+          "enable_social_sharing": true
+        }
+      },
+      "static-article": {
+        "type": "static-article",
+        "settings": {
+          "enable_social_sharing": true
+        }
+      },
+      "static-blog": {
+        "type": "static-blog",
+        "settings": {
+          "posts-per-page": 20
+        }
+      },
+      "pxs-announcement-bar": {
+        "type": "pxs-announcement-bar",
+        "settings": {
+          "show_announcement": true,
+          "announcement_home_only": false,
+          "announcement_text": "NEW! Sexual Healing E-Course by Dr Laura Berman & Teal Swan. Click Here for information.",
+          "announcement_text_mobile": "NEW! Sexual Healing E-Course by Dr Laura Berman & Teal Swan. Click Here for information.",
+          "announcement_link": "shopify:\/\/pages\/sexual_healing_ecourse",
+          "announcement_color": "#ffffff",
+          "announcement_background": "#383434"
+        }
+      },
+      "static-contactbar": {
+        "type": "static-contactbar",
+        "settings": {
+          "trigger": "",
+          "phone_value": "",
+          "email_value": "",
+          "hours_value": "",
+          "directions_value": "",
+          "directions_map": false,
+          "api_key": "",
+          "directions-map-zoom": 2,
+          "directions_map_color_fg": "#292929",
+          "directions_map_color_bg": "#ffffff"
+        }
+      },
+      "static-list-collections": {
+        "type": "static-list-collections",
+        "settings": {
+          "collections-per-page": 30,
+          "collection_item_display_description": false
+        }
+      },
+      "1573847858632": {
+        "type": "pxs-image-with-text-overlay",
+        "settings": {
+          "section_height": "medium",
+          "image": "shopify:\/\/shop_images\/love-letters-and-romance.jpg",
+          "position": "center center",
+          "title": "Sexual wellness starts here.",
+          "text": "<p>Shop Dr. Laura Berman Intimate Accessories on Walmart.com, eDrugstore.com, Amazon.com and Calexotics.com.&nbsp;<\/p>",
+          "content_position": "center-center",
+          "color": "#ffffff",
+          "overlay_background": "#000000",
+          "overlay_opacity": 50,
+          "link": "https:\/\/calexotics.com\/brands\/dr-laura-bermanr-collection.html",
+          "button_text": "Shop Now"
+        }
+      }
+    },
+    "content_for_index": [
+      "section-1",
+      "section-4",
+      "1573847858632"
+    ]
+  },
+  "presets": {
+    "Light": {
+      "quickshop_show_payment_button": true,
+      "favicon": "",
+      "color_background": "#ffffff",
+      "color_accent": "#292929",
+      "use_highlighted_menu": false,
+      "color_title_text": "#292929",
+      "color_text": "#292929",
+      "color_button_text": "#ffffff",
+      "font_title": "prata_n4",
+      "font_body": "karla_n4",
+      "font_label": "karla_n4",
+      "enable_currency_converter": true,
+      "currency_display_format": "money_with_currency_format",
+      "currency_converter_currencies": "INR GBP CAD USD AUD EUR JPY",
+      "currency_converter_default": "CAD",
+      "social_facebook": "",
+      "social_twitter": "",
+      "social_google": "",
+      "social_pinterest": "",
+      "social_instagram": "",
+      "social_vimeo": "",
+      "social_youtube": "",
+      "social_medium": "",
+      "social_rss": "",
+      "social_email": "",
+      "share_widget_facebook": true,
+      "share_widget_twitter": true,
+      "share_widget_pinterest": true,
+      "share_widget_google_plus": true,
+      "share_widget_email": true,
+      "sections": {
+        "section-1": {
+          "type": "dynamic-slideshow",
+          "blocks": {
+            "slide-1": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-left",
+                "text_color": "#000000",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            },
+            "slide-2": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-right",
+                "text_color": "#000000",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            },
+            "slide-3": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-left",
+                "text_color": "#292929",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            }
+          },
+          "block_order": [
+            "slide-1",
+            "slide-2",
+            "slide-3"
+          ],
+          "settings": {
+            "should_autoplay": false,
+            "slide_autoplay": 3
+          }
+        },
+        "section-2": {
+          "type": "dynamic-featured-collections",
+          "blocks": {
+            "collection-1": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "alignment": "right",
+                "show_description": true,
+                "custom_description": ""
+              }
+            },
+            "collection-2": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "alignment": "left",
+                "show_description": true,
+                "custom_description": ""
+              }
+            },
+            "collection-3": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "alignment": "right",
+                "show_description": true,
+                "custom_description": ""
+              }
+            }
+          },
+          "block_order": [
+            "collection-1",
+            "collection-2",
+            "collection-3"
+          ],
+          "settings": {
+            "title": "Featured collections"
+          }
+        },
+        "section-3": {
+          "type": "dynamic-featured-products",
+          "settings": {
+            "title": "Featured collection",
+            "collection": "",
+            "product_item_style": "natural",
+            "enable_product_quickshop": false,
+            "product_emphasize": true
+          }
+        },
+        "section-4": {
+          "type": "dynamic-blog-posts",
+          "settings": {
+            "title": "Blog posts",
+            "blog": ""
+          }
+        },
+        "section-5": {
+          "type": "dynamic-instagram",
+          "settings": {
+            "title": "Instagram feed",
+            "access_token": ""
+          }
+        },
+        "section-6": {
+          "type": "dynamic-twitter",
+          "settings": {
+            "title": "Twitter feed",
+            "username": ""
+          }
+        },
+        "static-header": {
+          "type": "static-header",
+          "settings": {
+            "logo": "",
+            "logo_width": "",
+            "mobile_logo": "",
+            "mobile_logo_width": "",
+            "menu": "main-menu"
+          }
+        },
+        "site-footer": {
+          "type": "site-footer",
+          "blocks": {
+            "customer": {
+              "type": "customer",
+              "settings": {
+                "title": "Account"
+              }
+            },
+            "richtext": {
+              "type": "richtext",
+              "settings": {
+                "title": "About",
+                "content": "<p>Use this space to give credit where it's due, reinforce your brand identity, shop policy, or company motto.<\/p>"
+              }
+            }
+          },
+          "block_order": [
+            "customer",
+            "richtext"
+          ],
+          "settings": {
+            "enable_newsletter": true,
+            "enable_social": true,
+            "enable_payment_icons": true
+          }
+        },
+        "static-collection": {
+          "type": "static-collection",
+          "settings": {
+            "enable_menu_form": true,
+            "products-per-page": 12,
+            "product_item_style": "natural",
+            "enable_product_quickshop": false,
+            "show_product_vendors": false
+          }
+        },
+        "static-product": {
+          "type": "static-product",
+          "blocks": {
+            "related-products": {
+              "type": "related_products",
+              "settings": {
+                "product_item_style": "natural",
+                "enable_product_quickshop": false,
+                "product-count": 5,
+                "product_emphasize": true
+              }
+            }
+          },
+          "block_order": [
+            "related-products"
+          ],
+          "settings": {
+            "enable_menu_form": true,
+            "show_product_vendor": false,
+            "show_payment_button": true,
+            "enable_social_sharing": false
+          }
+        },
+        "static-article": {
+          "type": "static-article",
+          "settings": {
+            "enable_social_sharing": false
+          }
+        },
+        "static-blog": {
+          "type": "static-blog",
+          "settings": {
+            "posts-per-page": 4
+          }
+        },
+        "pxs-announcement-bar": {
+          "type": "pxs-announcement-bar",
+          "settings": {
+            "show_announcement": false,
+            "announcement_home_only": false,
+            "announcement_text": "Call attention to a special discount, feature, or promotion here.",
+            "announcement_text_mobile": "Use less text on mobile!",
+            "announcement_link": "",
+            "announcement_color": "#ffffff",
+            "announcement_background": "#000000"
+          }
+        },
+        "static-contactbar": {
+          "type": "static-contactbar",
+          "settings": {
+            "trigger": "",
+            "phone_value": "+1 111 111 1111",
+            "email_value": "shop@example.com",
+            "hours_value": "<p>Mon-Fri, 9am-5pm<\/p>",
+            "directions_value": "<p>1005 Langley St<\/p><p>Victoria, BC V8W 1V7<\/p>",
+            "directions_map": false,
+            "api_key": "",
+            "directions-map-zoom": 2,
+            "directions_map_color_fg": "#292929",
+            "directions_map_color_bg": "#ffffff"
+          }
+        }
+      },
+      "content_for_index": [
+        "section-1",
+        "section-2",
+        "section-3",
+        "section-4",
+        "section-5",
+        "section-6"
+      ]
+    },
+    "Cool": {
+      "quickshop_show_payment_button": true,
+      "favicon": "",
+      "color_background": "#ffffff",
+      "color_accent": "#32818e",
+      "use_highlighted_menu": true,
+      "color_title_text": "#32818e",
+      "color_text": "#292929",
+      "color_button_text": "#ffffff",
+      "font_title": "poppins_n4",
+      "font_body": "karla_n4",
+      "font_label": "karla_n4",
+      "enable_currency_converter": true,
+      "currency_display_format": "money_format",
+      "currency_converter_currencies": "CAD USD GBP AUD EUR JPY",
+      "currency_converter_default": "CAD",
+      "social_facebook": "",
+      "social_twitter": "",
+      "social_google": "",
+      "social_pinterest": "",
+      "social_instagram": "",
+      "social_vimeo": "",
+      "social_youtube": "",
+      "social_medium": "",
+      "social_rss": "",
+      "social_email": "",
+      "share_widget_facebook": true,
+      "share_widget_twitter": true,
+      "share_widget_pinterest": true,
+      "share_widget_google_plus": true,
+      "share_widget_email": true,
+      "sections": {
+        "section-1": {
+          "type": "dynamic-slideshow",
+          "blocks": {
+            "slide-1": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-right",
+                "text_color": "#32818e",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            },
+            "slide-2": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-left",
+                "text_color": "#32818e",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            },
+            "slide-3": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-right",
+                "text_color": "#32818e",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            }
+          },
+          "block_order": [
+            "slide-1",
+            "slide-2",
+            "slide-3"
+          ],
+          "settings": {
+            "should_autoplay": false,
+            "slide_autoplay": 3
+          }
+        },
+        "section-2": {
+          "type": "dynamic-featured-collections",
+          "blocks": {
+            "collection-1": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "alignment": "left",
+                "show_description": true,
+                "custom_description": ""
+              }
+            },
+            "collection-2": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "alignment": "right",
+                "show_description": true,
+                "custom_description": ""
+              }
+            }
+          },
+          "block_order": [
+            "collection-1",
+            "collection-2"
+          ],
+          "settings": {
+            "title": "Featured collections"
+          }
+        },
+        "section-3": {
+          "type": "dynamic-featured-products",
+          "settings": {
+            "title": "Featured Products",
+            "collection": "",
+            "product_item_style": "cropped-medium",
+            "enable_product_quickshop": false,
+            "product_emphasize": true
+          }
+        },
+        "section-4": {
+          "type": "dynamic-blog-posts",
+          "settings": {
+            "title": "Blog posts",
+            "blog": ""
+          }
+        },
+        "section-5": {
+          "type": "dynamic-instagram",
+          "settings": {
+            "title": "Instagram feed",
+            "access_token": ""
+          }
+        },
+        "section-6": {
+          "type": "dynamic-twitter",
+          "settings": {
+            "title": "Twitter feed",
+            "username": ""
+          }
+        },
+        "static-header": {
+          "type": "static-header",
+          "settings": {
+            "logo": "",
+            "logo_width": "",
+            "mobile_logo": "",
+            "mobile_logo_width": "",
+            "menu": "main-menu"
+          }
+        },
+        "site-footer": {
+          "type": "site-footer",
+          "blocks": {
+            "customer": {
+              "type": "customer",
+              "settings": {
+                "title": "Account"
+              }
+            },
+            "richtext": {
+              "type": "richtext",
+              "settings": {
+                "title": "About",
+                "content": "<p>Use this space to give credit where it's due, reinforce your brand identity, shop policy, or company motto.<\/p>"
+              }
+            }
+          },
+          "block_order": [
+            "customer",
+            "richtext"
+          ],
+          "settings": {
+            "enable_newsletter": true,
+            "enable_social": true,
+            "enable_payment_icons": true
+          }
+        },
+        "static-collection": {
+          "type": "static-collection",
+          "settings": {
+            "enable_menu_form": true,
+            "products-per-page": 12,
+            "product_item_style": "natural",
+            "enable_product_quickshop": false,
+            "show_product_vendors": false
+          }
+        },
+        "static-product": {
+          "type": "static-product",
+          "settings": {
+            "enable_menu_form": true,
+            "show_product_vendor": false,
+            "show_payment_button": true,
+            "enable_social_sharing": false
+          }
+        },
+        "static-article": {
+          "type": "static-article",
+          "settings": {
+            "enable_social_sharing": false
+          }
+        },
+        "pxs-announcement-bar": {
+          "type": "pxs-announcement-bar",
+          "settings": {
+            "show_announcement": false,
+            "announcement_home_only": false,
+            "announcement_text": "Call attention to a special discount, feature, or promotion here.",
+            "announcement_text_mobile": "Use less text on mobile!",
+            "announcement_link": "",
+            "announcement_color": "#ffffff",
+            "announcement_background": "#000000"
+          }
+        },
+        "static-contactbar": {
+          "type": "static-contactbar",
+          "settings": {
+            "trigger": "",
+            "phone_value": "+1 111 111 1111",
+            "email_value": "shop@example.com",
+            "hours_value": "<p>Mon-Fri, 9am-5pm<\/p>",
+            "directions_value": "<p>1005 Langley St<\/p><p>Victoria, BC V8W 1V7<\/p>",
+            "directions_map": false,
+            "api_key": "",
+            "directions-map-zoom": 2,
+            "directions_map_color_fg": "#292929",
+            "directions_map_color_bg": "#ffffff"
+          }
+        }
+      },
+      "content_for_index": [
+        "section-1",
+        "section-3",
+        "section-2",
+        "section-4",
+        "section-5",
+        "section-6"
+      ]
+    },
+    "Fresh": {
+      "quickshop_show_payment_button": true,
+      "favicon": "",
+      "color_background": "#f6f6f6",
+      "color_accent": "#657461",
+      "use_highlighted_menu": false,
+      "color_title_text": "#474c46",
+      "color_text": "#6b6b6b",
+      "color_button_text": "#ffffff",
+      "font_title": "roboto_condensed_n4",
+      "font_body": "roboto_n4",
+      "font_label": "muli_n4",
+      "enable_currency_converter": true,
+      "currency_display_format": "money_format",
+      "currency_converter_currencies": "INR GBP CAD USD AUD EUR JPY",
+      "currency_converter_default": "CAD",
+      "social_facebook": "",
+      "social_twitter": "",
+      "social_google": "",
+      "social_pinterest": "",
+      "social_instagram": "",
+      "social_vimeo": "",
+      "social_youtube": "",
+      "social_medium": "",
+      "social_rss": "",
+      "social_email": "",
+      "share_widget_facebook": true,
+      "share_widget_twitter": true,
+      "share_widget_pinterest": true,
+      "share_widget_google_plus": true,
+      "share_widget_email": true,
+      "sections": {
+        "section-1": {
+          "type": "dynamic-slideshow",
+          "blocks": {
+            "slide-1-1": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "full-width-right",
+                "text_color": "#ffffff",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            }
+          },
+          "block_order": [
+            "slide-1-1"
+          ],
+          "settings": {
+            "should_autoplay": false,
+            "slide_autoplay": 3
+          }
+        },
+        "section-2": {
+          "type": "dynamic-mobile-collections",
+          "settings": {
+            "title": "Browse By",
+            "show_images": false,
+            "type": "tags",
+            "truncate": true,
+            "truncate_count": 5
+          }
+        },
+        "section-3": {
+          "type": "dynamic-featured-products",
+          "settings": {
+            "title": "Our Best Sellers",
+            "collection": "",
+            "product_item_style": "cropped-large",
+            "enable_product_quickshop": true,
+            "product_emphasize": false
+          }
+        },
+        "section-4": {
+          "type": "dynamic-slideshow",
+          "blocks": {
+            "slide-4-1": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-right",
+                "text_color": "#474c46",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            },
+            "slide-4-2": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-right",
+                "text_color": "#474c46",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            },
+            "slide-4-3": {
+              "type": "slide",
+              "settings": {
+                "image": "",
+                "layout": "default-right",
+                "text_color": "#474c46",
+                "title": "Slide",
+                "text": "<p>Introduce customers to your shop with lifestyle imagery and product photography.<\/p>",
+                "link": "",
+                "link_text": "Slide link"
+              }
+            }
+          },
+          "block_order": [
+            "slide-4-1",
+            "slide-4-2",
+            "slide-4-3"
+          ],
+          "settings": {
+            "should_autoplay": false,
+            "slide_autoplay": 3
+          }
+        },
+        "section-5": {
+          "type": "dynamic-twitter",
+          "settings": {
+            "title": "Twitter",
+            "username": "pixelunion"
+          }
+        },
+        "section-6": {
+          "type": "dynamic-instagram",
+          "settings": {
+            "title": "Instagram feed",
+            "access_token": ""
+          }
+        },
+        "static-article": {
+          "type": "static-article",
+          "settings": {
+            "enable_social_sharing": true
+          }
+        },
+        "static-blog": {
+          "type": "static-blog",
+          "settings": {
+            "posts-per-page": 4
+          }
+        },
+        "static-collection": {
+          "type": "static-collection",
+          "settings": {
+            "enable_menu_form": true,
+            "products-per-page": 12,
+            "product_item_style": "cropped-large",
+            "enable_product_quickshop": true,
+            "show_product_vendors": false
+          }
+        },
+        "static-contactbar": {
+          "type": "static-contactbar",
+          "settings": {
+            "trigger": "",
+            "phone_value": "+1 111 111 1111",
+            "email_value": "shop@example.com",
+            "hours_value": "<p>Mon-Fri, 9am-5pm<\/p>",
+            "directions_value": "<p>1005 Langley St<\/p><p>Victoria, BC V8W 1V7<\/p>",
+            "directions_map": false,
+            "api_key": "",
+            "directions-map-zoom": 2,
+            "directions_map_color_fg": "#292929",
+            "directions_map_color_bg": "#ffffff"
+          }
+        },
+        "site-footer": {
+          "type": "site-footer",
+          "settings": {
+            "enable_newsletter": true,
+            "enable_social": true,
+            "enable_payment_icons": true
+          }
+        },
+        "static-header": {
+          "type": "static-header",
+          "settings": {
+            "logo": "",
+            "logo_width": "",
+            "mobile_logo": "",
+            "mobile_logo_width": "",
+            "menu": "main-menu"
+          }
+        },
+        "static-product": {
+          "type": "static-product",
+          "settings": {
+            "enable_menu_form": true,
+            "show_product_vendor": false,
+            "show_payment_button": true,
+            "enable_social_sharing": true
+          }
+        },
+        "pxs-announcement-bar": {
+          "type": "pxs-announcement-bar",
+          "settings": {
+            "show_announcement": false,
+            "announcement_home_only": false,
+            "announcement_text": "Call attention to a special discount, feature, or promotion here.",
+            "announcement_text_mobile": "Use less text on mobile!",
+            "announcement_link": "",
+            "announcement_color": "#ffffff",
+            "announcement_background": "#000000"
+          }
+        }
+      },
+      "content_for_index": [
+        "section-1",
+        "section-2",
+        "section-3",
+        "section-4",
+        "section-5",
+        "section-6"
+      ]
+    }
+  }
+}

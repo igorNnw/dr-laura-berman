@@ -1,0 +1,99 @@
+
+                <footer class="site-footer" id="podcast">
+                    {% if section.settings.enable_newsletter or social_count > 0 %}
+                      <div class="site-footer-item site-footer-language-of-love">
+  
+                        {% if section.settings.enable_newsletter %}
+                        {% include 'newsletter' %}
+                        {% endif %}
+  
+  
+                        {% if section.settings.enable_social %}
+                        <h4>Follow me on Social Media</h4>
+                        {% include 'social' %}
+                        {% endif %}
+                      </div>
+                    {% endif %}
+  
+                    <div class="site-footer-item site-footer-nav">
+                      <nav class="footnav footnav-count-{{ menu_count }}">
+  
+                        {% for block in section.blocks %}
+                          <div class="footnav-item footnav-item-{{ block.type }}" {{ block.shopify_attributes }}>
+  
+                            {% if block.type == 'richtext' %}
+                              <!--
+                              <h1 class="footnav-title">{{ block.settings.title | escape }}</h1>
+                              <div class="footnav-rte">{{ block.settings.content }}</div>
+                              -->
+                              <img src="{{ 'footer-logo.gif' | asset_url }}" alt="Dr Laura Berman" />
+                            {% endif %}
+  
+                            {% if block.type == 'menu' %}
+                              {% assign menu = linklists[block.settings.menu] %}
+  
+                              <h1 class="footnav-title">{{ menu.title }}</h1>
+                              <ul class="footnav-menu">
+                                {% for link in menu.links %}
+                                  <li class="footnav-menu-link">
+                                    <a href="{{ link.url }}">{{ link.title }}</a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+  
+                            {% if block.type == 'customer' %}
+                              {% if shop.customer_accounts_enabled %}
+                                <h1 class="footnav-title">{{ block.settings.title | escape }}</h1>
+                                <ul class="footnav-menu">
+                                  {% if customer %}
+                                    <li class="footnav-menu-link">
+                                      <a href="/account">{{ 'footnav.account.logged_in_html' | t: user_name: customer.first_name }}</a>
+                                    </li>
+                                    <li class="footnav-menu-link">
+                                      {{ 'footnav.account.logout' | t | customer_logout_link }}
+                                    </li>
+                                  {% else %}
+                                    <li class="footnav-menu-link">
+                                      {{ 'footnav.account.login' | t | customer_login_link }}
+                                    </li>
+                                    {% if shop.customer_accounts_optional %}
+                                      <li class="footnav-menu-link">
+                                        {{ 'footnav.account.register' | t | customer_register_link }}
+                                      </li>
+                                    {% endif %}
+                                  {% endif %}
+                                </ul>
+                              {% endif %}
+                            {% endif %}
+  
+                          </div>
+                        {% endfor %}
+  
+                      </nav>
+                    </div>
+  
+                    {% if section.settings.enable_payment_icons and shop.enabled_payment_types.size > 0 %}
+                      <div class="site-footer-item">
+                        <div class="payment">
+                          {% for type in shop.enabled_payment_types %}
+                            <div class="payment-type">
+                              {{ type | payment_type_svg_tag }}
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% endif %}
+  
+                    <div class="site-footer-item">
+                      <div class="credits">
+                        {% capture year %}
+                          {{ 'now' | date: '%Y' }}
+                        {% endcapture %}
+  
+                        {{ 'general.general.copyright_html' | t: year: year, shop_name: shop.name }}
+                        <br>
+  
+                      </div>
+                    </div>
+                  </footer>

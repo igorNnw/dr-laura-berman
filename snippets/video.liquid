@@ -1,0 +1,44 @@
+{% assign platform = '' %}
+{%- if url contains 'youtube' or url contains 'youtu.be' -%}
+  {% assign platform = 'youtube' %}
+{%- elsif url contains 'vimeo' -%}
+  {% assign platform = 'vimeo' %}
+{% endif %}
+
+<div
+  class="video"
+  data-video={{ platform }}
+>
+  {% if placeholder_image %}
+    <div
+      class="video-placeholder video-placeholder-{{ style }}"
+      {%
+        include 'rimg',
+        img: placeholder_image,
+        size: '1000x',
+        background: true,
+        lazy: true
+      %}
+      data-video-placeholder
+    >
+      <button
+        class="video-play-button"
+        data-video-play-button
+      >
+        {%
+          include 'icon',
+          id: 'play',
+          class: 'video-play-icon'
+        %}
+
+        {%
+          include 'icon',
+          id: 'loader',
+          class: 'video-loading-icon'
+        %}
+      </button>
+    </div>
+  {% endif %}
+
+  <div class="{{ platform }}" data-{{ platform }} data-video-url="{{ url }}"></div>
+</div>

@@ -1,0 +1,73 @@
+jQuery(document).ready(function($){
+	$('.cd-testimonials-wrapper').flexslider({
+		selector: ".cd-testimonials > li",
+		animation: "slide",
+		controlNav: false,
+		slideshow: false,
+		smoothHeight: true,
+		start: function(){
+			$('.cd-testimonials').children('li').css({
+				'opacity': 1,
+				'position': 'relative'
+			});
+		}
+	});
+
+	//open the testimonials modal page
+	$('.cd-see-all').on('click', function(){
+		$('.cd-testimonials-all').addClass('is-visible');
+	});
+
+	//close the testimonials modal page
+	$('.cd-testimonials-all .close-btn').on('click', function(){
+		$('.cd-testimonials-all').removeClass('is-visible');
+	});
+	$(document).keyup(function(event){
+		//check if user has pressed 'Esc'
+    	if(event.which=='27'){
+    		$('.cd-testimonials-all').removeClass('is-visible');	
+	    }
+    });
+    
+	//build the grid for the testimonials modal page
+	//$('.cd-testimonials-all-wrapper').children('ul').masonry({
+  	//	itemSelector: '.cd-testimonials-item'
+	//});
+  
+  //setTimeout(function(){
+  //  	console.log("popup");
+  //		$("#popup").modal();
+  //}, 1000);
+  
+  if(!Cookies.get('newsletter')) {
+    Cookies.set('newsletter', 'true', { expires: 7 });
+    setTimeout(function(){
+  		$("#popup").modal();
+  	}, 3000);
+  }
+  
+  $("ul.youtube-videogallery").youtubeVideoGallery({
+       	 plugin:'fancybox',
+         playButton: "{{ 'play-button-red_40.png' | asset_url }}",
+      	 innerHeight: 500,
+         innerWidth: 600,
+       });
+	
+  $("#filterSelect").change(function(e){
+  	 var topic = $(this).val();
+      $('.youtube-videogallery > li').fadeOut(50);
+      if(topic == "") {
+    	 $('.youtube-videogallery > li').fadeIn(50);
+        return;
+      }
+      $('.youtube-videogallery > li[data-topic="' + topic + '"]').fadeIn(100);
+    
+  });
+  
+  $(".play-now").click(function(e){
+  	e.preventDefault();
+    $("#buzzsprout-player-7782385").toggle();
+  
+  });
+  
+});

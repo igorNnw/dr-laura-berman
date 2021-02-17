@@ -1,0 +1,54 @@
+<h1 class="list-collections-title">{{ 'list_collections.title' | t }}</h1>
+
+{%- paginate collections by section.settings.collections-per-page -%}
+  <div class="list-collections">
+      {% if linklists['all-collections'] == blank %}
+        {%- for collection in collections -%}
+          {%- include 'collection-item',
+            collection: collection,
+            display_description: section.settings.collection_item_display_description
+          -%}
+        {%- endfor -%}
+      {% else %}
+        {% for link in linklists['all-collections'].links %}
+          {% if link.type == 'collection_link' %}
+            {% assign collection = link.object %}
+
+            {%- include 'collection-item',
+              collection: collection,
+              display_description: section.settings.collection_item_display_description
+            -%}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+  </div>
+
+  {% if linklists['all-collections'] == blank %}
+    {%- include 'pagination' -%}
+  {% endif %}
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Collections list page",
+  "class": "section-list-collections",
+  "settings": [
+    {
+      "type": "range",
+      "id": "collections-per-page",
+      "label": "Collections per page",
+      "min": 3,
+      "max": 30,
+      "step": 3,
+      "default": 9
+    },
+    {
+      "id": "collection_item_display_description",
+      "type": "checkbox",
+      "label": "Show descriptions",
+      "default": false
+    }
+  ]
+}
+
+{% endschema %}

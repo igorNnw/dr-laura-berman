@@ -1,0 +1,73 @@
+{% comment %}
+  @param menu LinkedList/Link
+         The menu to obtain links from.
+
+  @param depth Number
+         The starting depth to use for the class names.
+
+  @param is_submenu Bool
+         Add submenu classes
+{% endcomment %}
+
+<ul class="navmenu navmenu-depth-{{ depth }} {% if is_submenu %}navmenu-submenu{% endif %}">
+  {% assign is_submenu = false %}
+
+  {% for link in menu.links %}
+    {% include 'is-dropdown-or-meganav', first_tier_link: link, uses_blocks: true %}
+    {% capture link_name %}
+      {{ link.title }}
+    {% endcapture %}
+    {% assign handle = link_name | handle %}
+    {% assign d = depth | plus: 1 %}
+
+    {% if link.links == blank %}
+      <li class="navmenu-item navmenu-id-{{ handle }}">
+        <a class="navmenu-link" href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% else %}
+      <li class="navmenu-item navmenu-item-parent navmenu-id-{{ handle }}"
+        {% if is_meganav %} data-meganav-trigger="{{ link.handle }}"{% endif %}
+        data-nav-trigger
+        aria-haspopup="true"
+        aria-controls="menu-item-{{ link.handle }}"
+        aria-expanded="false"
+      >
+        <a class="navmenu-link navmenu-link-parent{% if is_meganav %} navmenu-link-meganav{% endif %}" href="{{ link.url }}">
+          {{ link.title }}
+
+          {% unless is_meganav %}
+            <div class="navmenu-arrow-toggle">
+              <div class="navmenu-arrow"></div>
+            </div>
+          {% endunless %}
+        </a>
+        {% if is_meganav %}
+          {% include 'meganav', link: link, inline: true %}
+        {% else %}
+          {% include 'navmenu',
+            menu: link,
+            depth: d,
+            is_submenu: true
+          %}
+        {% endif %}
+      </li>
+    {% endif %}
+  {% endfor %}
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      <li class="navmenu-item navmenu-id-account">
+        <a class="navmenu-link" href="/account">{{ 'header.account.title' | t }}</a>
+      </li>
+    {% else %}
+      <li class="navmenu-item navmenu-id-account">
+        <a class="navmenu-link" href="/account/login">{{ 'header.account.login' | t }}</a>
+      </li>
+      {% if shop.customer_accounts_optional %}
+        <li class="navmenu-item navmenu-id-register">
+          <a class="navmenu-link" href="/account/register">{{ 'header.account.register' | t }}</a>
+        </li>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+</ul>

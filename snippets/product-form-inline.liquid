@@ -1,0 +1,72 @@
+{% assign payment_buttons = blank %}
+
+{% if product != blank and show_payment_button %}
+  {% capture throwaway %}
+    {% form 'product', product, class: 'product-form' %}
+      {% capture payment_buttons %}
+        {{ form | payment_button }}
+      {% endcapture %}
+    {% endform %}
+  {% endcapture %}
+{% endif %}
+
+{% capture form_classes %}
+  product-form-inline
+  {% if show_payment_button %}
+    product-form-payment-buttons
+  {% endif %}
+{% endcapture %}
+
+{%
+  form 'product',
+  product,
+  class: form_classes,
+  data-product-form-inline: ''
+%}
+  {% include 'product-options', type: 'select' %}
+
+  <div class="product-form-inline-atc">
+    {% comment %}
+    {% include 'quantity' %}
+    {% endcomment %}
+	
+    {% unless product.metafields.global.buy_links == blank %}
+    
+    	{% assign buy_links = product.metafields.global.buy_links %}
+    	
+    	
+    	{% for bl in buy_links %}
+    		
+            {% if bl contains "amazon" %}
+    			<a href="{{bl}}" class="buy-button">Buy on Amazon</a>
+    		{% elsif bl contains "target" %}
+    			<a href="{{bl}}" class="buy-button">Buy in Target</a>
+    		{% elsif bl contains "shopify" %}
+    			
+    			
+    {% include 'quantity' %}
+
+    <button
+      class="product-form-inline-atc-button"
+      type="submit"
+      data-product-atc
+    >
+      {{ 'product.add_to_cart.available' | t }}
+    </button>
+
+    {{ payment_buttons }}
+    		{% else %}
+    			<a href="{{bl}}" class="buy-button">Buy Now</a>
+    		{% endif %}
+    	
+   
+    
+    	{% endfor %}
+	
+	{% endunless %}
+    
+    
+
+    
+  </div>
+{% endform %}
