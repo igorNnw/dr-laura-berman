@@ -10818,7 +10818,7 @@ $font: 'Anton', sans-serif;
 
 #video { margin: 50px 0 50px; }
 
-.btn-inverted { color: $podcast-color!important; text-transform: uppercase; background: $color-white!important; padding: 12px; font-size: 20px; margin-right: 10px; letter-spacing: 0.5px;  border: $podcast-color 2px solid; font-weight: 100; 
+.btn-inverted { font-family: $font; color: $podcast-color!important; text-transform: uppercase; background: $color-white!important; padding: 12px; font-size: 20px; margin-right: 10px; letter-spacing: 0.5px;  border: $podcast-color 2px solid; font-weight: 100; 
 
     &:hover { background: transparent!important; color: $color-white!important; border: $color-white 2px solid; }
 
@@ -10994,7 +10994,54 @@ input#mc-embedded-subscribe { font-family: $font; color: $color-white!important;
   .owl-carousel.owl-drag .owl-item { background: none; }
   
 
+/*** Language of love homepage banner */
+
+#lol-banner { background: $podcast-color; padding: 10px; font-family: $font;
+
+    .btn-inverted { padding: 8px 60px; text-decoration: none; display: inline-block; }
+    h3 { font-size: 30px!important; color: #b4adcc; margin: 0!important; text-align: left; padding-top: 15px; }
+    h4 { font-size: 46px; color: $color-white; margin: 0!important; }
+
+}
+#lol-logo { background: url({{'lol-banner.gif' | asset_url }}) no-repeat; width: 226px; height: 149px; display: block; padding: 20px; }
+
+.container { 
+  display: grid;
+  grid-template-columns: 1fr 47% 1fr;
+
+  .last-item { justify-self: end; align-self: center; }
+}
+
+
 @media screen and (max-width: 1024px) {
+
+  #lol-banner { background: $podcast-color; padding: 10px; font-family: $font;
+    h3 { font-size: 25px!important; color: #b4adcc; margin: 0!important; text-align: left; padding-top: 15px; }
+    h4 { font-size: 30px; color: $color-white; margin: 0!important; }
+} 
+  .slideshow-slide-title {
+    font-size: 36px;
+    line-height: 46px;
+    font-weight: normal;
+  }
+  #lol-banner .btn-inverted { padding: 8px 10px; font-size: 15px; }
+
+
+
+}
+
+@media screen and (max-width: 1024px) {
+
+    #lol-banner { background: $podcast-color; padding: 10px; font-family: $font;
+      h3 { font-size: 20px!important; color: #b4adcc; margin: 0!important; text-align: center; padding-top: 15px; }
+      h4 { font-size: 24px; color: $color-white; margin: 0!important; text-align: center; }
+    } 
+    
+    .container .last-item {
+      justify-self: end;
+      align-self: auto;
+      padding-top: 15px;
+    }
 
     #buttons-list { position: initial; padding: 0; margin-top: 0; }
     #buttons-list li { float: none; }
@@ -11088,8 +11135,20 @@ input#mc-embedded-subscribe { font-family: $font; color: $color-white!important;
 
 }
 
+@media screen and (max-width: 480px) {
 
+    #lol-banner { margin-top: 20px; }
+    .container { 
+      display: grid;
+      grid-template-columns: auto;
 
+      .last-item { justify-self: center; align-self: auto; padding-bottom: 10px; }
+    }
+
+    #lol-banner .btn-inverted { padding: 12px 40px; font-size: 18px; }
+    #lol-logo { margin: 0 auto; }
+
+}
 
 @media screen and (max-width: 420px) {
 
